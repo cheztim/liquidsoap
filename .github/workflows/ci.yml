@@ -543,8 +543,8 @@ jobs:
         build_js,
         run_tests,
         build_posix,
-        build_win32,
-        fetch_s3_artifacts,
+        #build_win32,
+        #fetch_s3_artifacts,
       ]
     if: needs.build_details.outputs.is_release
     steps:
