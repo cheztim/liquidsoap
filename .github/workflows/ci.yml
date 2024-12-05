@@ -208,7 +208,6 @@ jobs:
           GH_PAT: ${{ secrets.WEBSITE_TOKEN }}
 
   run_tests:
-    if: false
     runs-on: ubuntu-latest
     needs: build_details
     container:
