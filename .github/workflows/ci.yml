@@ -546,7 +546,7 @@ jobs:
         #build_win32,
         #fetch_s3_artifacts,
       ]
-    if: needs.build_details.outputs.is_release
+    #if: needs.build_details.outputs.is_release
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
