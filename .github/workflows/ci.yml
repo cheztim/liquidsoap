@@ -547,7 +547,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Tag commit
-        uses: ${{ MYUSERNAME }}/latest-tag@any-context
+        uses: ${{ env.MYUSERNAME }}/latest-tag@any-context
         with:
           description: Liquidsoap ${{ needs.build_details.outputs.branch }}
           tag-name: ${{ needs.build_details.outputs.branch }}
