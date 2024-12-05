@@ -104,7 +104,7 @@ jobs:
       - name: Checkout code
         run: |
           cd /tmp/liquidsoap-full/liquidsoap
-          git remote set-url origin https://github.com/$MYUSERNAME/liquidsoap.git
+          git remote set-url origin https://github.com/${{ MYUSERNAME }}/liquidsoap.git
           git fetch origin ${{ github.sha }}
           git checkout ${{ github.sha }}
           mv .git /tmp
@@ -547,7 +547,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Tag commit
-        uses: $MYUSERNAME/latest-tag@any-context
+        uses: ${{ MYUSERNAME }}/latest-tag@any-context
         with:
           description: Liquidsoap ${{ needs.build_details.outputs.branch }}
           tag-name: ${{ needs.build_details.outputs.branch }}
@@ -597,7 +597,7 @@ jobs:
           token: ${{ secrets.LIQUIDSOAP_RELEASE_ASSETS_TOKEN }}
           tag_name: ${{ needs.build_details.outputs.branch }}
           files: ${{ env.RELEASE_ASSETS }}
-          repository: $MYUSERNAME/liquidsoap-release-assets
+          repository: ${{ MYUSERNAME }}/liquidsoap-release-assets
           prerelease: ${{ needs.build_details.outputs.is_rolling_release }}
           body_path: doc/content/release-assets.md
           draft: true
