@@ -462,6 +462,7 @@ jobs:
   fetch_s3_artifacts:
     runs-on: ubuntu-latest
     needs: [build_details, build_posix]
+    if: false
     steps:
       - name: Prepare directory
         run: |
@@ -638,7 +639,7 @@ jobs:
   build_docker_alpine:
     runs-on: ${{ matrix.runs-on }}
     needs: [build_details, run_tests, build_posix, fetch_s3_artifacts]
-    if: false && needs.build_details.outputs.is_fork != 'true' && github.event_name != 'merge_group'
+    if: needs.build_details.outputs.is_fork != 'true' && github.event_name != 'merge_group'
     strategy:
       fail-fast: false
       matrix:
@@ -696,7 +697,7 @@ jobs:
   build_docker_alpine_minimal:
     runs-on: ${{ matrix.runs-on }}
     needs: [build_details, run_tests, build_posix, fetch_s3_artifacts]
-    if: false && needs.build_details.outputs.is_fork != 'true' && github.event_name != 'merge_group'
+    if: needs.build_details.outputs.is_fork != 'true' && github.event_name != 'merge_group'
     strategy:
       fail-fast: false
       matrix:
