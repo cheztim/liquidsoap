@@ -9,7 +9,9 @@ on:
       - rolling-release-*
       - v[0-9]+.[0-9]+.[0-9]+
       - v[0-9]+.[0-9]+.[0-9]+-*
-
+env:
+  MYUSERNAME: devloic
+  
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -41,6 +43,7 @@ jobs:
         id: build_details
 
   build_no_depopts:
+    if: false
     runs-on: ubuntu-latest
     needs: build_details
     container:
@@ -101,7 +104,7 @@ jobs:
       - name: Checkout code
         run: |
           cd /tmp/liquidsoap-full/liquidsoap
-          git remote set-url origin https://github.com/savonet/liquidsoap.git
+          git remote set-url origin https://github.com/${MYUSERNAME}/liquidsoap.git
           git fetch origin ${{ github.sha }}
           git checkout ${{ github.sha }}
           mv .git /tmp
@@ -447,7 +450,7 @@ jobs:
           chown -R opam "${GITHUB_OUTPUT}"
           sudo -u opam -E ./.github/scripts/build-apk.sh ${{ needs.build_details.outputs.branch }} ${{ matrix.os }} ${{ matrix.platform }} ${{ matrix.alpine-arch }} "${{ needs.build_details.outputs.is_rolling_release }}" "${{ needs.build_details.outputs.is_release }}" "${{ needs.build_details.outputs.minimal_exclude_deps }}"
       - name: Upload alpine packages artifacts
-        if: needs.build_details.outputs.is_fork != 'true' && matrix.os == 'alpine'
+        if: false && needs.build_details.outputs.is_fork != 'true' && matrix.os == 'alpine'
         uses: savonet/aws-s3-docker-action@master
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -539,7 +542,7 @@ jobs:
     needs:
       [
         build_details,
-        build_no_depopts,
+        #build_no_depopts,
         build_js,
         run_tests,
         build_posix,
@@ -551,7 +554,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Tag commit
-        uses: savonet/latest-tag@any-context
+        uses: ${MYUSERNAME}/latest-tag@any-context
         with:
           description: Liquidsoap ${{ needs.build_details.outputs.branch }}
           tag-name: ${{ needs.build_details.outputs.branch }}
@@ -601,7 +604,7 @@ jobs:
           token: ${{ secrets.LIQUIDSOAP_RELEASE_ASSETS_TOKEN }}
           tag_name: ${{ needs.build_details.outputs.branch }}
           files: ${{ env.RELEASE_ASSETS }}
-          repository: savonet/liquidsoap-release-assets
+          repository: ${MYUSERNAME}/liquidsoap-release-assets
           prerelease: ${{ needs.build_details.outputs.is_rolling_release }}
           body_path: doc/content/release-assets.md
           draft: true
