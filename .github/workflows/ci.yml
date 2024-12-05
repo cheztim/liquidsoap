@@ -541,7 +541,7 @@ jobs:
   update_release:
     runs-on: ubuntu-latest
     #needsremoved: [build_no_depopts,run_tests,build_win32,fetch_s3_artifacts,]
-    needs: [build_details,build_js,build_posix]
+    needs: [build_details, build_js, build_posix]
     #if: needs.build_details.outputs.is_release
     steps:
       - name: Checkout code
