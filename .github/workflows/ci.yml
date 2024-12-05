@@ -597,7 +597,7 @@ jobs:
           token: ${{ secrets.LIQUIDSOAP_RELEASE_ASSETS_TOKEN }}
           tag_name: ${{ needs.build_details.outputs.branch }}
           files: ${{ env.RELEASE_ASSETS }}
-          repository: ${{ MYUSERNAME }}/liquidsoap-release-assets
+          repository: ${{ env.MYUSERNAME }}/liquidsoap-release-assets
           prerelease: ${{ needs.build_details.outputs.is_rolling_release }}
           body_path: doc/content/release-assets.md
           draft: true
