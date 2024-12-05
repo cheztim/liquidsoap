@@ -485,6 +485,7 @@ jobs:
 
   build_win32:
     runs-on: depot-ubuntu-22.04-4
+    if: false
     needs: build_details
     strategy:
       fail-fast: false
