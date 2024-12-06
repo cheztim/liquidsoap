@@ -11,7 +11,7 @@ IS_RELEASE="$6"
 MINIMAL_EXCLUDE_DEPS="$7"
 DEB_RELEASE=1
 
-ARCH=$(dpkg --print-architecture)
+#ARCH=$(dpkg --print-architecture)
 
 COMMIT_SHORT=$(echo "${GITHUB_SHA}" | cut -c-7)
 
