@@ -4,6 +4,21 @@ New:
 
 - Added support for `WAVE_FORMAT_EXTENSIBLE` to the internal
   wav dexcoder.
+- Added optional `buffer_size` parameter to `input.alsa` and
+  `output.alsa` (#4243)
+
+Changed:
+
+- Make alsa I/O work with buffer size different than
+  liquidsoap internal frame (#4236)
+- Make `"song"` metadata mapping to `"title"` metadata in
+  `input.harbord` disabled when either `"artist"` or `"title"`
+  is also passed. Add a configuration key to disable this mechanism.
+  (#4235, #2676)
+
+Changed:
+
+- Convert all ICY (icecast) metadata from `input.http` to `utf8`.
 
 ---
 
