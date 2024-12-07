@@ -546,8 +546,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Tag commit
-        #FIXIT with variable instead of devloic
-        uses: devloic/latest-tag@any-context
+        #FIXIT with variable instead of cheztim
+        uses: cheztim/latest-tag@any-context
         with:
           description: Liquidsoap ${{ needs.build_details.outputs.branch }}
           tag-name: ${{ needs.build_details.outputs.branch }}
