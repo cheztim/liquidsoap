@@ -594,7 +594,7 @@ jobs:
       - name: Upload assets to release repo
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.LIQUIDSOAP_RELEASE_ASSETS_TOKEN }}
           tag_name: ${{ needs.build_details.outputs.branch }}
           files: ${{ env.RELEASE_ASSETS }}
           repository: ${{ env.MYUSERNAME }}/liquidsoap-release-assets
