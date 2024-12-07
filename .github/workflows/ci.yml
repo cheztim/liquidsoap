@@ -552,7 +552,7 @@ jobs:
           description: Liquidsoap ${{ needs.build_details.outputs.branch }}
           tag-name: ${{ needs.build_details.outputs.branch }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.LIQUIDSOAP_RELEASE_ASSETS_TOKEN }}
       - name: Download all artifact
         uses: actions/download-artifact@v4
         with:
